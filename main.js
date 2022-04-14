@@ -80,7 +80,6 @@ fetchText(csvUrl)
     data = d3.csvParse(text);
     // Sortar por partido
     data.sort((a, b) => {
-      console.log(a.SiglaPartidoParlamentar > b.SiglaPartidoParlamentar)
       if(a.SiglaPartidoParlamentar > b.SiglaPartidoParlamentar){
         return -1
       }
