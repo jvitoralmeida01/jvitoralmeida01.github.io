@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Brazillian Senate of 2022 Visualization</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js" integrity="sha512-6zTDRWNxo8vI6JZYDCwhrJpg5icK3P4HNnW3czsO5Scb3lAoPDam+/wF3eog4hxcl0h44d0XlIcFkuoSaWHQ2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="main.js" defer></script>
+  </head>
+  <style>
+    body {
+      background-color: rgb(36, 36, 36);
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      margin: auto;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <svg
+        width="850"
+        height="650"
+        style="position: absolute"
+      >
+      </svg>
+      <img
+        style="
+          width: 120px;
+          clip-path: circle();
+          position: absolute;
+          transform: translateY(290px);
+        "
+      />
+      <h1
+        style="color: #fff; position: absolute; transform: translateY(400px)"
+      ></h1>
+      <h2 style="position: absolute; transform: translateY(450px)"></h2>
+    </div>
+  </body>
+</html>
