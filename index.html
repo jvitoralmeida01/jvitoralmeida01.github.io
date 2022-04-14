@@ -31,6 +31,7 @@
   </style>
   <body>
     <div class="container">
+      <p style="transform: translate(60px, -120px); color: #aaa; font-size: 50px; opacity: 0;">SENADO BRASILEIRO</p>
       <svg
         width="850"
         height="650"
@@ -42,13 +43,14 @@
           width: 120px;
           clip-path: circle();
           position: absolute;
-          transform: translateY(290px);
+          cursor: pointer;
         "
       />
-      <h1
+      <h1 id="name"
         style="color: #fff; position: absolute; transform: translateY(400px)"
       ></h1>
-      <h2 style="position: absolute; transform: translateY(450px)"></h2>
+      <h2 id="party" style="position: absolute; transform: translateY(450px)"></h2>
+      <h4 style="opacity: 0; transform: translate(-266px,220px); color: #aaa; cursor: default">Ir para website</h4>
     </div>
   </body>
 </html>

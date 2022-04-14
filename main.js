@@ -1,8 +1,10 @@
+// FUNÇÕES E VARIÁVEIS DE UTILIDADE
+const width = 850;
+const height = 650;
 const fetchText = async (url) => {
   const response = await fetch(url);
   return await response.text();
 };
-
 let corPartidoMap = new Map();
 const getCorPartidor = (partido) => {
   if (corPartidoMap.has(partido)) {
@@ -25,9 +27,6 @@ const getCorPartidor = (partido) => {
     return corPartidoMap.get(partido);
   }
 };
-
-const width = 850;
-const height = 650;
 const rings = [
   {limit: 10, radius: 150},
   {limit: 23, radius: 200},
@@ -68,7 +67,6 @@ const getCircleY = (index) => {
   const angle = getAngle(currRing, index, step)
   return Math.cos(angle * Math.PI/180) * rings[currRing].radius + (height) - 20
 }
-
 const csvUrl = "./Senadores.csv";
 // //"https://raw.githubusercontent.com/nivan/testPython/main/ListaParlamentarEmExercicio.csv";
 
@@ -107,6 +105,7 @@ fetchText(csvUrl)
 
     let svg = d3.select("div").select("svg");
     let circles = svg.selectAll("circle");
+    // CRIANDO OS CIRCULOS DENTRO DO SVG USANDO O D3
     circles
       .data(data)
       .join(
@@ -117,10 +116,11 @@ fetchText(csvUrl)
         .style('opacity', 0.3)
         .attr('cx', d=>positions[d.id].x)
         .attr('cy', d=>positions[d.id].y)
-        .attr("id", d=>"senador_"+d.id)
+        .attr("id", d=>"ring-"+ringByIndex(d.id))
         .text((d) => d.NomeParlamentar + " " + d.SiglaPartidoParlamentar)
         .on("click", (event, d) => {
 
+          // ANIMANDO OS ELEMENTOS: IMAGEM, NOME, SUBTITULO
           gsap.fromTo("img", 
           {transform: "translateY(290px) scale(0.5)", opacity: 0}, 
           {
@@ -149,11 +149,34 @@ fetchText(csvUrl)
           }
           );
 
+          // VARIANDO A FONTE DAS IMAGENS E TEXTOS DE ACORDO COM OS DADOS
           image.attr("src", () => {
             return d.UrlFotoParlamentar;
           })
+          .on("mouseover", (event, d) => {
+            d3.select(event.target)
+            .transition()
+            .duration(200)
+            .style('opacity', 0.3);
+            
+            //ANIMANDO O TEXTO NO HOVER
+            gsap.to("h4", {
+              opacity: 1
+            })
+          })
+          .on("mouseleave", (event, d) => {
+            d3.select(event.target)
+            .transition()
+            .duration(200)
+            .style('opacity', 1);
+
+            //ANIMANDO O TEXTO NO HOVER
+            gsap.to("h4", {
+              opacity: 0
+            })
+          })
           .on('click', () => {
-            window.open(d.UrlFotoParlamentar)
+            window.open(d.UrlPaginaParlamentar)
           })
 
           labelNome.text(d.NomeParlamentar);
@@ -180,6 +203,76 @@ fetchText(csvUrl)
           .style('stroke-width', '0px');
         })
       )
+
+      // ANIMANDO OS CÍRCULOS
+      gsap.from("#ring-0", {
+        opacity: 0,
+        transform: "translateY(500px)",
+        delay: 1,
+        duration: 0.8,
+        ease: Back.easeOut.config(0.5),
+        stagger: {
+          amount: 1,
+          from: "random",
+          ease: "power2.out"
+        }
+      })
+      gsap.from("#ring-1", {
+        opacity: 0,
+        transform: "translateY(500px)",
+        delay: 1,
+        duration: 0.8,
+        ease: Back.easeOut.config(0.5),
+        stagger: {
+          amount: 1,
+          from: "random",
+          ease: "power2.out"
+        }
+      })
+      gsap.from("#ring-2", {
+        opacity: 0,
+        transform: "translateY(500px)",
+        delay: 1,
+        duration: 0.8,
+        ease: Back.easeOut.config(0.5),
+        stagger: {
+          amount: 1,
+          from: "random",
+          ease: "power2.out"
+        }
+      })
+      gsap.from("#ring-3", {
+        opacity: 0,
+        transform: "translateY(500px)",
+        delay: 1,
+        duration: 0.8,
+        ease: Back.easeOut.config(0.5),
+        stagger: {
+          amount: 1,
+          from: "random",
+          ease: "power2.out"
+        }
+      })
+      gsap.from("#ring-4", {
+        opacity: 0,
+        transform: "translateY(500px)",
+        delay: 1,
+        duration: 0.8,
+        ease: Back.easeOut.config(0.5),
+        stagger: {
+          amount: 1,
+          from: "random",
+          ease: "power2.out"
+        }
+      })
+      gsap.fromTo("p", {
+        opacity: 0,
+      }, {
+        delay: 0.1,
+        fontWeight: "bold",
+        duration: 4,
+        opacity: 1,
+      })
   });
 
 //svgTitle.innerHTML = nome;
